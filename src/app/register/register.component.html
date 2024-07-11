@@ -1,0 +1,43 @@
+<div class="flex-container">
+    <div class="register-container">
+      <img src="/assets/iconLogin.png" alt="Travel" class="register-image">
+      <h2>Registrarse</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Nombre de usuario</label>
+          <input [ngClass]="{'is-invalid': hasErrors('username','required')}" type="text" class="form-control" id="username" formControlName="username" placeholder="Ingrese su nombre de usuario" >
+          <dir class="text-danger" *ngIf="hasErrors('username','required')"> Usuario es obligatorio  </dir>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input [ngClass]="{'is-invalid': hasErrors('username','required')}" type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña" >
+          <dir class="text-danger" *ngIf="hasErrors('password','required')"> Contraseña es obligatorio </dir>
+          <dir class="text-danger" *ngIf="hasErrors('password','minlength')" > La contraseña debe tener un minimo de 6 caracteres </dir>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input [ngClass]="{'is-invalid': hasErrors('email','required') || hasErrors('email','email') }" type="email" class="form-control" id="email" formControlName="email" placeholder="Ingrese su correo electrónico" >
+          <dir class="text-danger" *ngIf="hasErrors('email','required')"> E-mail es obligatorio  </dir>
+          <dir class="text-danger" *ngIf="hasErrors('email','email')"> El formato de E-mail no es valido </dir>
+        </div>
+        <div class="form-group">
+          <label for="firstname">Nombre</label>
+          <input [ngClass]="{'is-invalid': hasErrors('firstname','required')}" type="text" class="form-control" id="firstname" formControlName="firstname" placeholder="Ingrese su nombre" >
+          <dir class="text-danger" *ngIf="hasErrors('firstname','required')"> Nombre es obligatorio </dir>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Apellido</label>
+          <input [ngClass]="{'is-invalid': hasErrors('lastname','required')}" type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Ingrese su apellido" >
+          <dir class="text-danger" *ngIf="hasErrors('lastname','required')"> Apellido es obligatorio </dir>
+        </div>
+        <div class="form-group">
+          <label for="country">Pais</label>
+          <input [ngClass]="{'is-invalid': hasErrors('country','required')}" type="text" class="form-control" id="country" formControlName="country" placeholder="Ingrese su pais" >
+          <dir class="text-danger" *ngIf="hasErrors('country','required')"> Pais es obligatorio </dir>
+        </div>
+      
+        <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+      </form>
+    </div>
+  </div>
+  

@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --rose-of-sharon-50: #fffbeb;
+    --rose-of-sharon-100: #fef3c7;
+    --rose-of-sharon-200: #fde58a;
+    --rose-of-sharon-300: #f1d167;
+    --rose-of-sharon-400: #fabe25;
+    --rose-of-sharon-500: #f49d0c;
+    --rose-of-sharon-600: #d87607;
+    --rose-of-sharon-700: #bc560a;
+    --rose-of-sharon-800: #923f0e;
+    --rose-of-sharon-900: #78340f;
+    --rose-of-sharon-950: #451a03;
+}
+
+body {
+    font-family:'Roboto', Arial, sans-serif;
+    background: linear-gradient(to right, var(--rose-of-sharon-100), var(--rose-of-sharon-300));
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

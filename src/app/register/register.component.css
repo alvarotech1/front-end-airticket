@@ -1,0 +1,73 @@
+.flex-container{
+  display: flex;
+  justify-content: center;
+}
+.register-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid var(--rose-of-sharon-300);
+    border-radius: 12px;
+    background-color: var(--rose-of-sharon-50);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .register-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    color: var(--rose-of-sharon-700);
+    margin-bottom: 20px;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .register-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--rose-of-sharon-700);
+    font-family: 'Roboto', Arial, sans-serif;
+  }
+  
+  .register-container .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-family: 'Roboto', Arial, sans-serif;
+    border: 1px solid var(--rose-of-sharon-300);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .register-container .btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--rose-of-sharon-500);
+    font-family: 'Roboto', Arial, sans-serif;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-container .btn-primary:hover {
+    background-color: var(--rose-of-sharon-600);
+  }
+  
+  .register-image {
+    width: 100%;
+    border-bottom: 1px solid var(--rose-of-sharon-300);
+    margin-bottom: 20px;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .text-danger{
+    margin: 2% 2%;
+    padding: 0%;
+    font-size: 14px;
+  }
