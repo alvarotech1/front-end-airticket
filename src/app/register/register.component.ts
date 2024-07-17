@@ -19,7 +19,7 @@ import { __values } from 'tslib';
 export class RegisterComponent  {
 
   registerForm: FormGroup;
-
+  
 
 constructor(private form: FormBuilder,private router: Router,private authService: AuthService){
   this.registerForm = this.form.group({
@@ -40,7 +40,7 @@ return this.registerForm.get(controlName)?.hasError(errorType) && this.registerF
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const user: UserRegister = this.registerForm.value
+      
       this.authService.register(this.registerForm.value).subscribe(
         {
          next: response => {
@@ -48,9 +48,12 @@ return this.registerForm.get(controlName)?.hasError(errorType) && this.registerF
             this.router.navigate(['/login']);
             alert(response);
         },
-          error: error => {
-            console.error('Error during registration', error);
-          // Aquí puedes manejar errores y mostrar mensajes al usuario.
+          error: err => {
+            console.error('Error during registration', err);
+            if(typeof err === 'string'){
+              alert(err);
+            }
+            
         },
       
     });
