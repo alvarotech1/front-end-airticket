@@ -1,0 +1,6 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, var(--rose-of-sharon-100), var(--rose-of-sharon-300),var(--rose-of-sharon-500));
+}

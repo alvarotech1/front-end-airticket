@@ -1,0 +1,20 @@
+.search-flights {
+    background-color: #f8f9fa;
+    padding: 2em 0;
+  }
+  
+  .search-flights .form-group {
+    margin-bottom: 1em;
+  }
+  
+  .search-flights .form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  
+  .search-flights .form-group input {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+  }
+  

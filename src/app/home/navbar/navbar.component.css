@@ -1,0 +1,35 @@
+.navbar {
+    background-color: #343a40;
+    color: white;
+    padding: 1em 0;
+  }
+
+  .icono{
+    height: 40px;
+  }
+  .brand-name {
+    font-size: 1.5em;
+    font-style: italic;
+  }
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .navbar .nav-links li {
+    margin-left: 1em;
+  }
+  
+  .navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+  

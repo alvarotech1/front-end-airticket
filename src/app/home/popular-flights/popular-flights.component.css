@@ -1,0 +1,12 @@
+.popular-flights .flights {
+    display: flex;
+    gap: 1em;
+  }
+  
+  .flight-card {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 1em;
+    text-align: center;
+  }
+  

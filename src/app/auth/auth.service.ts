@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserAuth } from './user-auth';
+import { UserRegister } from '../user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string){
-    return this.http.post<UserAuth>('http://localhost:4444/auth/login', {
-      username,
-      password,
-    });
+  register(user: UserRegister){
+    return this.http.post<UserRegister>('http://localhost:4444/auth/register', user, {responseType: 'text' as 'json'});
+    };
+
   }
 
-}
+

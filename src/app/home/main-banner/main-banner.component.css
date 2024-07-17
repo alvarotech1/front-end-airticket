@@ -1,0 +1,9 @@
+.main-banner {
+    background: url(/assets/bannerImage.png) no-repeat center center/cover ;
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    padding: 4em 0;
+    text-align: center;
+  }
+  
