@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { UserRegister } from '../user/user';
+import { UserRegister } from '../user/userRegister';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { __values } from 'tslib';

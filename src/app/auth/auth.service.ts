@@ -1,8 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserRegister } from '../user/user';
+
 import { environment } from '../../environments/environment.development';
-import { catchError, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
+import { UserRegister } from '../user/userRegister';
+import { UserLogin } from '../user/userLogin';
+import { UserAuth } from './user-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,20 @@ import { catchError, throwError } from 'rxjs';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
+
     url: string = environment.baseURL;
+
+
+    login(user: UserLogin){
+      return this.http.post<UserAuth>(`${this.url}login`, user).pipe(
+        map((userAuth: UserAuth) => {
+          localStorage.setItem('jwtToken', userAuth.jwtToken);
+          localStorage.setItem('refreshToken', userAuth.refreshToken);
+          return userAuth;
+        }),
+        catchError(this.handleError)
+      );
+    } 
 
   register(user: UserRegister){
     return this.http.post<UserRegister>(`${this.url}register`, user, {responseType: 'text' as 'json'}).pipe(
