@@ -1,8 +1,13 @@
 <div class="home-container">
-<app-navbar></app-navbar>
-<app-main-banner></app-main-banner>
-<app-search-flights></app-search-flights>
-<app-popular-flights></app-popular-flights>
-<app-testimonials></app-testimonials>
-<app-footer></app-footer>
-</div>
+    <app-navbar (onSearchFlights)="showFlights()" (onMyReservations)="showReservations()"></app-navbar>
+    <app-main-banner></app-main-banner>
+  
+    <!-- Mostrar el componente de búsqueda de vuelos si showSearchFlights es true -->
+    <app-search-flights *ngIf="showSearchFlights"></app-search-flights>
+    
+    <!-- Mostrar el componente de mis reservas si showSearchFlights es false -->
+    <app-my-reservations *ngIf="!showSearchFlights"></app-my-reservations>
+  
+    <app-footer></app-footer>
+  </div>
+  

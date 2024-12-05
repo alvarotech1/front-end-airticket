@@ -5,9 +5,9 @@
       <span class="brand-name">FlySmart</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Mis Reservas</a></li>
-        <li><a href="#">Ayuda</a></li>
+        <li><a (click)="navigateToHome()">Inicio</a></li>
+        <li><a (click)="navigateToReservations()">Mis Reservas</a></li>
+        <li><a (click)="logout($event)">Cerrar sesión</a></li>
       </ul>
     </div>
   </nav>

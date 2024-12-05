@@ -1,5 +1,5 @@
 export interface UserAuth{
-    jwtToken: string;
+    accessToken: string;
     refreshToken: string;
     firstname: string;
     lastname: string;

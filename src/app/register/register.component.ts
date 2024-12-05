@@ -12,7 +12,7 @@ import { __values } from 'tslib';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink,RouterOutlet,ReactiveFormsModule,CommonModule,HttpClientModule],
+  imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

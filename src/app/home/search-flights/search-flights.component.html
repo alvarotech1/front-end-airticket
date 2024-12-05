@@ -1,28 +1,74 @@
 <section class="search-flights">
-    <div class="container">
-      <form>
-        <div class="form-group">
-          <label for="origin">Origen</label>
-          <input type="text" id="origin" name="origin" placeholder="Ciudad de origen">
-        </div>
-        <div class="form-group">
-          <label for="destination">Destino</label>
-          <input type="text" id="destination" name="destination" placeholder="Ciudad de destino">
-        </div>
-        <div class="form-group">
-          <label for="departure-date">Fecha de Salida</label>
-          <input type="date" id="departure-date" name="departure-date">
-        </div>
-        <div class="form-group">
-          <label for="return-date">Fecha de Regreso</label>
-          <input type="date" id="return-date" name="return-date">
-        </div>
-        <div class="form-group">
-          <label for="passengers">Pasajeros</label>
-          <input type="number" id="passengers" name="passengers" min="1" value="1">
-        </div>
-        <button type="submit" class="btn btn-secondary">Buscar</button>
-      </form>
+  <div class="container">
+    <form (ngSubmit)="searchFlights()">
+      <div class="form-group">
+        <label for="origin">Origen</label>
+        <select id="origin" name="origin" [(ngModel)]="selectedOrigin" (change)="onOriginSelect(selectedOrigin)" required>
+          <option value="" disabled selected>Seleccione una ciudad de origen</option>
+          <option *ngFor="let origin of origins" [value]="origin">{{ origin }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="destination">Destino</label>
+        <select id="destination" name="destination" [(ngModel)]="selectedDestination" required>
+          <option value="" disabled selected>Seleccione una ciudad de destino</option>
+          <option *ngFor="let destination of destinations" [value]="destination">{{ destination }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="departure-date">Fecha de Salida</label>
+        <input type="date" id="departure-date" name="departureDate" [(ngModel)]="departureDate" required>
+      </div>
+
+      <button type="submit" class="btn btn-secondary" 
+              [disabled]="!selectedOrigin || !selectedDestination || !departureDate">
+        Buscar
+      </button>
+    </form>
+
+    <div *ngIf="flights.length > 0">
+      <h3>Vuelos disponibles</h3>
+      <div *ngFor="let flight of getVisibleFlights()" class="flight-card">
+        <h4>Vuelo {{ flight.id }}</h4>
+        <p>
+          <strong>Origen:</strong> {{ flight.origin.name }} ({{ flight.origin.city }}, {{ flight.origin.country }})<br>
+          <strong>Destino:</strong> {{ flight.destination.name }} ({{ flight.destination.city }}, {{ flight.destination.country }})<br>
+          <strong>Salida:</strong> {{ flight.departureTime | date:'short' }}<br>
+          <strong>Llegada:</strong> {{ flight.arrivalTime | date:'short' }}<br>
+          <strong>Precio:</strong> ${{ flight.price }}<br>
+          <strong>Asientos:</strong> {{ flight.availableSeats }}
+        </p>
+    
+        <h5>Asientos</h5>
+        <ul>
+          <li *ngFor="let seat of flight.seats" [ngClass]="{ 'available-seat': seat.available, 'unavailable-seat': !seat.available }">
+            {{ seat.seatNumber }} ({{ seat.seatClass }}) - 
+            <span *ngIf="seat.available; else notAvailable">Disponible</span>
+            <ng-template #notAvailable>No disponible</ng-template>
+        
+            <!-- Botón de reserva, solo habilitado si el asiento está disponible -->
+           
+            <button *ngIf="seat.available" (click)="reserveSeat(flight.id, seat.id)" class="btn btn-primary ms-3">
+              Reservar
+            </button>
+          </li>
+        </ul>
+      </div>
+    
+     
+      <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+        <span>Página {{ currentPage }} de {{ Math.ceil(flights.length / itemsPerPage) }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === Math.ceil(flights.length / itemsPerPage)">Siguiente</button>
+      </div>
     </div>
-  </section>
-  
+    
+
+    
+    <div *ngIf="search && flights.length === 0">
+      <h3>No hay vuelos disponibles para el día seleccionado.</h3>
+    </div>
+  </div>
+</section>

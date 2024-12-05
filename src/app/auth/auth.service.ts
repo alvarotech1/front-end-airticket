@@ -6,6 +6,8 @@ import { catchError, map, throwError } from 'rxjs';
 import { UserRegister } from '../user/userRegister';
 import { UserLogin } from '../user/userLogin';
 import { UserAuth } from './user-auth';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class AuthService {
     login(user: UserLogin){
       return this.http.post<UserAuth>(`${this.url}login`, user).pipe(
         map((userAuth: UserAuth) => {
-          localStorage.setItem('jwtToken', userAuth.jwtToken);
+          localStorage.setItem('jwtToken', userAuth.accessToken);
           localStorage.setItem('refreshToken', userAuth.refreshToken);
           return userAuth;
         }),
@@ -54,6 +56,25 @@ export class AuthService {
       return throwError(() => errorMessage);
     }
   
+
+    isLoggedIn(): boolean {
+      const token = localStorage.getItem('jwtToken');
+      if(!token) return false;
+      try {
+        const decodedToken: any = jwtDecode(token);
+        const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos
+        return decodedToken.exp > currentTime; // Verifica si el token aún no ha expirado
+      } catch (error) {
+        return false; // Si hay un error al decodificar, trata el token como inválido
+      }
+    }
+    
+    logout(): void {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('refreshToken');
+    }
+    
+    
   }
 
 

@@ -1,0 +1,32 @@
+<section class="reservations">
+    <div class="container">
+      <h2>Mis Reservas</h2>
+  
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+  
+      <div *ngIf="reservations.length > 0; else noReservations">
+        <div *ngFor="let reservation of reservations" class="reservation-card">
+          <h4>Reserva {{ reservation.id }}</h4>
+          <p>
+            <strong>Origen:</strong> {{ reservation.flightOrigin }} ({{ reservation.originCity }}, {{ reservation.originCountry }})<br>
+            <strong>Destino:</strong> {{ reservation.flightDestination }} ({{ reservation.destinationCity }}, {{ reservation.destinationCountry }})<br>
+            <strong>Fecha de salida:</strong> {{ reservation.departureTime | date: 'short' }}<br>
+            <strong>Fecha de llegada:</strong> {{ reservation.arrivalTime | date: 'short' }}<br>
+            <strong>Asiento:</strong> {{ reservation.seatNumber }}
+          </p>
+  
+          <!-- Botón de cancelación dentro de cada tarjeta de reserva -->
+          <button (click)="cancelReservation(reservation.id)" class="btn btn-secondary">
+            Cancelar
+          </button>
+        </div>
+      </div>
+  
+      <ng-template #noReservations>
+        <p class="no-reservations">No tienes reservas disponibles.</p>
+      </ng-template>
+    </div>
+  </section>
+  
